@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASJMM", "ASJMM\ASJMM.csproj", "{524319BB-A657-4877-BA46-E59133A2F2CD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{524319BB-A657-4877-BA46-E59133A2F2CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524319BB-A657-4877-BA46-E59133A2F2CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524319BB-A657-4877-BA46-E59133A2F2CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524319BB-A657-4877-BA46-E59133A2F2CD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7E050A15-5DC3-495E-869A-B030B817274D}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/asjmm
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ASJMM\\ASJMM.csproj
+		SccProjectName1 = ASJMM
+		SccLocalPath1 = ASJMM
+	EndGlobalSection
+EndGlobal

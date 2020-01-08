@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{524319BB-A657-4877-BA46-E59133A2F2CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ASJMM</RootNamespace>
+    <AssemblyName>ASJMM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\桌面\TEST\MMSMM\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="ASJ.BASE">
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.BASE.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.COMMON">
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.COMMON.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.ENTITY, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.ENTITY.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.FRAMEWORK">
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.FRAMEWORK.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.QUERY">
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.QUERY.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.RESOURCE">
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.RESOURCE.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.TOOLS">
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.TOOLS.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.Data.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.Office.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.Pdf.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.Printing.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.Utils.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.XtraBars.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.XtraEditors.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.XtraGrid.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.XtraLayout.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.XtraPrinting.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\桌面\TEST\MMSMM\DevExpress.XtraTreeList.v16.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\..\..\..\..\桌面\MP00101CS\ASJ.BIN\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BC_Standard.cs" />
+    <Compile Include="Popups\FrmPurchaseMAP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Popups\FrmPurchaseMAP.Designer.cs">
+      <DependentUpon>FrmPurchaseMAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MMSMMHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UcCltNodeBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCltNodeBase.Designer.cs">
+      <DependentUpon>UcCltNodeBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcCltRoute.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCltRoute.Designer.cs">
+      <DependentUpon>UcCltRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcInStockREC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcInStockREC.Designer.cs">
+      <DependentUpon>UcInStockREC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcTransfer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcTransfer.Designer.cs">
+      <DependentUpon>UcTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcOutStockREQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcOutStockREQ.Designer.cs">
+      <DependentUpon>UcOutStockREQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcOutStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcOutStock.Designer.cs">
+      <DependentUpon>UcOutStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcInStockREQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcInStockREQ.Designer.cs">
+      <DependentUpon>UcInStockREQ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcOrderType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcOrderType.Designer.cs">
+      <DependentUpon>UcOrderType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcOTCRConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcOTCRConfig.Designer.cs">
+      <DependentUpon>UcOTCRConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcInventory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcInventory.Designer.cs">
+      <DependentUpon>UcInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcPurchaseMAP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcPurchaseMAP.Designer.cs">
+      <DependentUpon>UcPurchaseMAP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcPurchase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcPurchase.Designer.cs">
+      <DependentUpon>UcPurchase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcInStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcInStock.Designer.cs">
+      <DependentUpon>UcInStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcPurchaseREQ.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcPurchaseREQ.Designer.cs">
+      <DependentUpon>UcPurchaseREQ.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Popups\FrmPurchaseMAP.resx">
+      <DependentUpon>FrmPurchaseMAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UcCltNodeBase.resx">
+      <DependentUpon>UcCltNodeBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcCltRoute.resx">
+      <DependentUpon>UcCltRoute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcInStockREC.resx">
+      <DependentUpon>UcInStockREC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcTransfer.resx">
+      <DependentUpon>UcTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcOutStockREQ.resx">
+      <DependentUpon>UcOutStockREQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcOutStock.resx">
+      <DependentUpon>UcOutStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcInStockREQ.resx">
+      <DependentUpon>UcInStockREQ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcOrderType.resx">
+      <DependentUpon>UcOrderType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcOTCRConfig.resx">
+      <DependentUpon>UcOTCRConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcInventory.resx">
+      <DependentUpon>UcInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcPurchaseMAP.resx">
+      <DependentUpon>UcPurchaseMAP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcPurchase.resx">
+      <DependentUpon>UcPurchase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcInStock.resx">
+      <DependentUpon>UcInStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcPurchaseREQ.resx">
+      <DependentUpon>UcPurchaseREQ.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

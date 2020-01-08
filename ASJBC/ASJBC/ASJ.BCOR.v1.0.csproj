@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32CA8CB9-F9BD-48E9-9DED-C44C6EAB107A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ASJ.BCOR</RootNamespace>
+    <AssemblyName>ASJ.BCOR.v1.0</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\桌面\TEST\BCOR\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="ASJ.BASE">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.BASE.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.COMMON">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.COMMON.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.ENTITY">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.ENTITY.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.FRAMEWORK">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.FRAMEWORK.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.QUERY">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.QUERY.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.RESOURCE">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.RESOURCE.dll</HintPath>
+    </Reference>
+    <Reference Include="ASJ.TOOLS">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\ASJ.TOOLS.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Oracle.ManagedDataAccess">
+      <HintPath>..\..\..\桌面\MP00101CS\ASJ.BIN\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BCORHelper.cs" />
+    <Compile Include="BC_Standard.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UcCustomer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCustomer.Designer.cs">
+      <DependentUpon>UcCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcCustomerGRP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcCustomerGRP.Designer.cs">
+      <DependentUpon>UcCustomerGRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWorkGRP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWorkGRP.Designer.cs">
+      <DependentUpon>UcWorkGRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStationCollectp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStationCollectp.Designer.cs">
+      <DependentUpon>UcStationCollectp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWorkShift.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWorkShift.Designer.cs">
+      <DependentUpon>UcWorkShift.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStation.Designer.cs">
+      <DependentUpon>UcStation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStock.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStock.Designer.cs">
+      <DependentUpon>UcStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStockArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStockArea.Designer.cs">
+      <DependentUpon>UcStockArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStockGRP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStockGRP.Designer.cs">
+      <DependentUpon>UcStockGRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStockSite.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStockSite.Designer.cs">
+      <DependentUpon>UcStockSite.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStockStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStockStatus.Designer.cs">
+      <DependentUpon>UcStockStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcStockStatusGRP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcStockStatusGRP.Designer.cs">
+      <DependentUpon>UcStockStatusGRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcSupplier.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcSupplier.Designer.cs">
+      <DependentUpon>UcSupplier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcSupplierGRP.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcSupplierGRP.Designer.cs">
+      <DependentUpon>UcSupplierGRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcUnit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcUnit.Designer.cs">
+      <DependentUpon>UcUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcUnitGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcUnitGroup.Designer.cs">
+      <DependentUpon>UcUnitGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcDept.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcDept.Designer.cs">
+      <DependentUpon>UcDept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UcWorkORG.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UcWorkORG.Designer.cs">
+      <DependentUpon>UcWorkORG.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="UcCustomer.resx">
+      <DependentUpon>UcCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcCustomerGRP.resx">
+      <DependentUpon>UcCustomerGRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWorkGRP.resx">
+      <DependentUpon>UcWorkGRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStationCollectp.resx">
+      <DependentUpon>UcStationCollectp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWorkShift.resx">
+      <DependentUpon>UcWorkShift.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStation.resx">
+      <DependentUpon>UcStation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStock.resx">
+      <DependentUpon>UcStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStockArea.resx">
+      <DependentUpon>UcStockArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStockGRP.resx">
+      <DependentUpon>UcStockGRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStockSite.resx">
+      <DependentUpon>UcStockSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStockStatus.resx">
+      <DependentUpon>UcStockStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcStockStatusGRP.resx">
+      <DependentUpon>UcStockStatusGRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcSupplier.resx">
+      <DependentUpon>UcSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcSupplierGRP.resx">
+      <DependentUpon>UcSupplierGRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcUnit.resx">
+      <DependentUpon>UcUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcUnitGroup.resx">
+      <DependentUpon>UcUnitGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcDept.resx">
+      <DependentUpon>UcDept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UcWorkORG.resx">
+      <DependentUpon>UcWorkORG.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

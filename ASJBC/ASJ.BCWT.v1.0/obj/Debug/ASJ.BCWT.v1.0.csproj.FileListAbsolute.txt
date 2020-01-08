@@ -1,0 +1,6 @@
+D:\WorkShop\ASJBC\ASJ.BCWT.v1.0\bin\Debug\ASJ.BCWT.v1.0.dll
+D:\WorkShop\ASJBC\ASJ.BCWT.v1.0\bin\Debug\ASJ.BCWT.v1.0.pdb
+D:\WorkShop\ASJBC\ASJ.BCWT.v1.0\obj\Debug\ASJ.BCWT.v1.0.csprojAssemblyReference.cache
+D:\WorkShop\ASJBC\ASJ.BCWT.v1.0\obj\Debug\ASJ.BCWT.v1.0.csproj.CoreCompileInputs.cache
+D:\WorkShop\ASJBC\ASJ.BCWT.v1.0\obj\Debug\ASJ.BCWT.v1.0.dll
+D:\WorkShop\ASJBC\ASJ.BCWT.v1.0\obj\Debug\ASJ.BCWT.v1.0.pdb

@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASJ.BCOR.v1.0", "ASJBC\ASJ.BCOR.v1.0.csproj", "{32CA8CB9-F9BD-48E9-9DED-C44C6EAB107A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASJ.BCMA.v1.0", "ASJ.BCMA.v1.0\ASJ.BCMA.v1.0.csproj", "{1E77CB0A-BAA4-4944-9923-7FE8A68F8FC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASJ.BCTE.v1.0", "ASJ,BCTE.v1.0\ASJ.BCTE.v1.0.csproj", "{5525E8DE-4970-4FD8-AF89-240BF23690A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASJ.BCWT.v1.0", "ASJ.BCWT.v1.0\ASJ.BCWT.v1.0.csproj", "{AA3B9A9B-4F60-4048-85C7-C46AC720A3DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32CA8CB9-F9BD-48E9-9DED-C44C6EAB107A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32CA8CB9-F9BD-48E9-9DED-C44C6EAB107A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32CA8CB9-F9BD-48E9-9DED-C44C6EAB107A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32CA8CB9-F9BD-48E9-9DED-C44C6EAB107A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E77CB0A-BAA4-4944-9923-7FE8A68F8FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E77CB0A-BAA4-4944-9923-7FE8A68F8FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E77CB0A-BAA4-4944-9923-7FE8A68F8FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E77CB0A-BAA4-4944-9923-7FE8A68F8FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5525E8DE-4970-4FD8-AF89-240BF23690A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5525E8DE-4970-4FD8-AF89-240BF23690A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5525E8DE-4970-4FD8-AF89-240BF23690A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5525E8DE-4970-4FD8-AF89-240BF23690A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA3B9A9B-4F60-4048-85C7-C46AC720A3DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA3B9A9B-4F60-4048-85C7-C46AC720A3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA3B9A9B-4F60-4048-85C7-C46AC720A3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA3B9A9B-4F60-4048-85C7-C46AC720A3DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F58DC81A-3F67-45EB-B9FC-784C0593816D}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/asjbc
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ASJBC\\ASJ.BCOR.v1.0.csproj
+		SccProjectName1 = ASJBC
+		SccLocalPath1 = ASJBC
+		SccProjectUniqueName2 = ASJ.BCMA.v1.0\\ASJ.BCMA.v1.0.csproj
+		SccProjectName2 = ASJ.BCMA.v1.0
+		SccLocalPath2 = ASJ.BCMA.v1.0
+		SccProjectUniqueName3 = ASJ,BCTE.v1.0\\ASJ.BCTE.v1.0.csproj
+		SccProjectName3 = ASJ,BCTE.v1.0
+		SccLocalPath3 = ASJ,BCTE.v1.0
+		SccProjectUniqueName4 = ASJ.BCWT.v1.0\\ASJ.BCWT.v1.0.csproj
+		SccProjectName4 = ASJ.BCWT.v1.0
+		SccLocalPath4 = ASJ.BCWT.v1.0
+	EndGlobalSection
+EndGlobal
