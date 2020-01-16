@@ -27,7 +27,7 @@ namespace ASJMM
     {
         //实例化帮助类
         //MMSMMHelper Helper = new MMSMMHelper();
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_InStock MHelper = new ASJMM_InStock();
         Result rs = new Result();
 
 
@@ -95,13 +95,7 @@ namespace ASJMM
         /// <param name="TKEY">工序自定义参数表 TKEY</param>
         public void LoadData(string TKEY)
         {
-
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-            string SqlMaster = $@" SELECT * FROM MMSMM_INSTOCK_REQ WHERE FLAG = 1  AND TKEY = '{TKEY}'";
-            strsql.Add(SqlMaster);//主档
-            TableNames.Add("MMSMM_INSTOCK_REQ");
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
+            ds = MHelper.InStockREQLoad(TKEY);//FrmDataLoad
 
             //-----------------------------------------------------
 
@@ -135,11 +129,7 @@ namespace ASJMM
                 return null ;
             }
             #region 控件内容赋值到Dataset
-            if (instockreq.TKEY == null)
-            {
-                ds.Tables["MMSMM_INSTOCK_REQ"].NewRow();
-                ds.Tables["MMSMM_INSTOCK_REQ"].Rows.Add();
-            }
+            if (ds.Tables["MMSMM_INSTOCK_REQ"].Rows.Count == 0) MHelper.InsertNewRowForDatatable(ds, "MMSMM_INSTOCK_REQ");
             ds.Tables["MMSMM_INSTOCK_REQ"].Rows[0]["TKEY"] = InStockREQTkey;
             ds.Tables["MMSMM_INSTOCK_REQ"].Rows[0]["INSTOCK_REQ_NO"] = txtINSTOCK_REQ_NO.EditValue ?? txtINSTOCK_REQ_NO.EditValue.ToString();
             ds.Tables["MMSMM_INSTOCK_REQ"].Rows[0]["INSTOCK_REQ_TYPE"] = txtINSTOCK_REQ_TYPE.EditValue ?? txtINSTOCK_REQ_TYPE.EditValue.ToString();
@@ -175,11 +165,7 @@ namespace ASJMM
         /// </summary>
         public void BindGridViewDataSource(string TKEY)
         {
-            string SqlGridView = string.Format(@"select T1.*,T2.TKEY,T2.MATERIAL_CODE,T2.MATERIAL_NAME,T2.MAPID,T2.BASE_UNIT_TKEY from MMSMM_INSTOCK_REQ_D T1 
-                                   left join BCMA_MATERIAL T2 ON T1.MATERIAL_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                   WHERE T1.FLAG = 1 and T1.TKEY = '{0}' ", TKEY);
-            MHelper.BindDataSourceForGridControl(GridItem, GrvInStockREQ, MHelper.QueryBindGridView(SqlGridView).Ds.Tables[0]);//绑定GridControl
-
+            MHelper.BindDataSourceForGridControl(GridItem, GrvInStockREQ, "MMSMM_INSTOCK_REQ_D", TKEY);
         }
 
         /// <summary>
@@ -220,16 +206,7 @@ namespace ASJMM
         /// </summary>
         public void BindGrdLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,WORKORGAN_NAME,WORKORGAN_CODE from BCOR_WORKORGANIZATION where  FLAG = 1 ");//生产组织
-            strsql.Add("SELECT TKEY,SUPPLIER_NAME,SUPPLIER_CODE from BCOR_SUPPLIER where  FLAG = 1 ");//所属供应商
-            strsql.Add("SELECT TKEY,CUSTOMER_NAME,CUSTOMER_CODE  from BCOR_CUSTOMER where  FLAG = 1");//所属客户
-            strsql.Add("SELECT TKEY,DEPT_NAME,DEPT_CODE from BCOR_DEPT WHERE FLAG = 1");//来源部门
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE  from BCOR_EMPLOYEE where  FLAG = 1");//来源发起人
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE  from BCOR_STOCK where  FLAG = 1");//来源库房
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE  from BCOR_STOCK where  FLAG = 1");//目标库房
-
             Control.Add(txtSOURCE_WKOG_TKEY);//生产组织
             Control.Add(txtSOURCE_SUPPLIER_TKEY);//所属供应商
             Control.Add(txtSOURCE_CUSTOMER_TKEY);//所属客户
@@ -237,7 +214,7 @@ namespace ASJMM
             Control.Add(txtSOURCE_PERSON);//来源发起人
             Control.Add(txtSOURCE_STOCK_TKEY);//来源库房
             Control.Add(txtTO_STOCK_TKEY);//目标库房
-            MHelper.BindGridLookUpEdit(strsql, Control);
+            MHelper.BindGridLookUpEdit_InStockREQ(Control);
         }
 
         /// <summary>
@@ -253,19 +230,13 @@ namespace ASJMM
         /// </summary>
         public void BindReGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemGridLookUpEdit> Control = new List<RepositoryItemGridLookUpEdit>();
-            strsql.Add("SELECT TKEY , MATERIAL_CODE,MATERIAL_NAME FROM BCMA_MATERIAL WHERE FLAG = 1 ");
-            strsql.Add("SELECT TKEY, STOCK_NAME, STOCK_CODE FROM BCOR_STOCK WHERE FLAG = 1");
-            strsql.Add("SELECT TKEY, STOCKSTATUS_NAME, STOCKSTATUS_CODE FROM BCOR_STOCKSTATUS WHERE FLAG = 1");
-            strsql.Add("SELECT TKEY, STOCKSTATUS_NAME, STOCKSTATUS_CODE FROM BCOR_STOCKSTATUS WHERE FLAG = 1");
-
             Control.Add(ReGridLookUpEdit);//物料编码
             Control.Add(ReGridLookUpEditStock);//目标库房
             Control.Add(ReGridLookUpEdit_SS);//库存状态
             Control.Add(ReGridLookUpEdit_D);//库存状态
+            MHelper.BindReGridLookUpEdit_InStockREQ(Control);
 
-            MHelper.BindReGridLookUpEdit(strsql, Control);
         }
 
         /// <summary>
@@ -273,17 +244,11 @@ namespace ASJMM
         /// </summary>
         public void BindReLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemLookUpEdit> Control = new List<RepositoryItemLookUpEdit>();
-            strsql.Add("Select TKEY,UNIT_NAME,UNIT_CODE from BCDF_UNIT WHERE FLAG = 1");
-            strsql.Add("Select TKEY,UNIT_NAME,UNIT_CODE from BCDF_UNIT WHERE FLAG = 1");
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE  from BCOR_STOCK where  FLAG = 1");
-
-            Control.Add(ReLookUpEdit);//计量单位 GrvInStock
-            Control.Add(ReLookUpEdit_Unit);//计量单位 GrvInStock
-            Control.Add(ReLookUpEdit_Stock);//目标库房 GrvInStockREQDLOT
-
-            MHelper.BindReLookUpEdit(strsql, Control);
+            Control.Add(ReLookUpEdit);//计量单位 
+            Control.Add(ReLookUpEdit_Unit);//计量单位 
+            Control.Add(ReLookUpEdit_Stock);//目标库房 
+            MHelper.BindReLookUpEdit_InStockREQ(Control);
         }
 
         /// <summary>
@@ -327,22 +292,48 @@ namespace ASJMM
             }
             else
             {
-                if (dtDetail != null)
+                if (GrvInStockREQDLOT.DataSource != null)
                 {
-                    foreach (DataRow dr in dt.Rows)
+                    DataTable dtD = ((DataView)GrvInStockREQDLOT.DataSource).ToTable();//批次下显示的GridView
+                    dtDetail = MHelper.MergeDataTable(dtDetail, dtD, "TKEY", 30);//合并Datatable
+                    if (dtDetail != null)
                     {
-                        //循环检查临时表中是否存在至少一笔批次资料  
-                        DataRow[] drItem = dtDetail.Select(string.Format("INSTOCK_REQ_D_TKEY =  '{0}'", dr["TKEY"].ToString()));
-                        if (drItem.Length == 0)
+                        foreach (DataRow dr in dt.Rows)
                         {
-                            sbErrMsg.Append("物料编码:" + dr["MATERIAL_CODE"].ToString() + "未新建明细批次资料\n");
+                            //循环检查临时表中是否存在至少一笔批次资料  
+                            DataRow[] drItem = dtDetail.Select(string.Format("INSTOCK_REQ_D_TKEY =  '{0}'", dr["TKEY"].ToString()));
+                            if (drItem.Length == 0)
+                            {
+                                sbErrMsg.Append("物料编码:" + dr["MATERIAL_CODE"].ToString() + "未新建明细批次资料\n");
+                            }
                         }
                     }
+                    else
+                    {
+                        sbErrMsg.Append("明细批次资料不能为空 \n");
+                    }
+
                 }
                 else
                 {
-                    sbErrMsg.Append("明细批次资料不能为空 \n");
+                    if (dtDetail != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            //循环检查临时表中是否存在至少一笔批次资料  
+                            DataRow[] drItem = dtDetail.Select(string.Format("INSTOCK_REQ_D_TKEY =  '{0}'", dr["TKEY"].ToString()));
+                            if (drItem.Length == 0)
+                            {
+                                sbErrMsg.Append("物料编码:" + dr["MATERIAL_CODE"].ToString() + "未新建明细批次资料\n");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        sbErrMsg.Append("明细批次资料不能为空 \n");
+                    }
                 }
+
             }
             return sbErrMsg.ToString();
         }

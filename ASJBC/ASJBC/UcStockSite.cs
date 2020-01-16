@@ -20,7 +20,7 @@ namespace ASJ.BCOR
     public partial class UcStockSite : BaseUserControl
     {
         //实例化帮助类
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_Stock BHelper = new ASJBCOR_Stock();
 
         //声明实体
         private BCOR_STOCK_SITE stocksite;
@@ -109,24 +109,13 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindGrdLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,WORKORGAN_NAME,WORKORGAN_CODE from BCOR_WORKORGANIZATION where  FLAG = 1 ");//生产组织
-            strsql.Add("SELECT TKEY,SUPPLIER_NAME,SUPPLIER_CODE from BCOR_SUPPLIER where  FLAG = 1 ");//所属供应商
-            strsql.Add("SELECT TKEY,CUSTOMER_NAME,CUSTOMER_CODE  from BCOR_CUSTOMER where  FLAG = 1");//所属客户
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE  from BCOR_EMPLOYEE where  FLAG = 1");//库位负责人
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE  from BCOR_STOCK where  FLAG = 1");//所属库房
-            //strsql.Add("SELECT TKEY,STOCK_AREA_NAME,STOCK_AREA_CODE from BCOR_STOCK_AREA where  FLAG = 1");//所属库区
-
             Control.Add(txtORGANIZATION_TKEY);//生产组织
             Control.Add(txtSUPPLIER_BELONG_TKEY);//所属供应商
             Control.Add(txtBELONG_CUSTOMER_TKEY);//所属客户看
             Control.Add(txtADMIN_EMPL_TKEY);//库位负责人
-            Control.Add(txtSTOCK_TKEY);//所属库房
-            
-            //Control.Add(txtSTOCK_TKEY);//所属库区
-
-            BHelper.BindGridLookUpEdit(strsql, Control);
+            Control.Add(txtSTOCK_TKEY);//库房
+            BHelper.BindGridLookUpEdit_StockSite(Control);
         }
 
         /// <summary>

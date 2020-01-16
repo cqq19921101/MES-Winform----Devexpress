@@ -14,9 +14,12 @@ using DevExpress.Utils;
 
 namespace ASJ.BCOR
 {
+    /// <summary>
+    /// 工作班次
+    /// </summary>
     public partial class UcWorkShift : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         //声明实体
         private BCOR_WORKSHIFT workshift;
 

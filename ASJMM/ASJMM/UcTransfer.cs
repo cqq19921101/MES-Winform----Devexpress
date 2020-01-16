@@ -26,7 +26,7 @@ namespace ASJMM
     {
 
         //实例化帮助类
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_TRANSFER MHelper = new ASJMM_TRANSFER();
         Result rs = new Result();
 
         private DataSet ds;//参数
@@ -74,10 +74,10 @@ namespace ASJMM
         /// <summary>
         /// 数据绑定
         /// </summary>
-        public void DataBinding(MMSMM_TRANSFER TransferTKEY)
+        public void DataBinding(MMSMM_TRANSFER transfer)
         {
-            string Tkey = TransferTKEY.TKEY == string.Empty ? Guid.NewGuid().ToString() : TransferTKEY.TKEY;
-            LoadData(Tkey);
+            TransferTKEY = transfer.TKEY == null ? Guid.NewGuid().ToString() : transfer.TKEY;
+            LoadData(TransferTKEY);
 
         }
 
@@ -86,16 +86,9 @@ namespace ASJMM
         /// </summary>
         public void LoadData(string TKEY)
         {
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-            string SqlMaster = @" SELECT * FROM MMSMM_TRANSFER WHERE FLAG = 1  AND TKEY = " + "'" + TKEY + "'";
-            strsql.Add(SqlMaster);//主档
-            TableNames.Add("MMSMM_TRANSFER");
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
+            ds = MHelper.TransferLoad(TKEY);//FrmDataLoad
 
             //------------------------------------------------
-
-            TransferTKEY = ds.Tables["MMSMM_TRANSFER"].Rows.Count == 0 ? Guid.NewGuid().ToString() : ds.Tables["MMSMM_TRANSFER"].Rows[0]["TKEY"].ToString();//主键
 
             txtTRANSFER_NO.EditValue = ds.Tables["MMSMM_TRANSFER"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_TRANSFER"].Rows[0]["TRANSFER_NO"].ToString();//单号
             txtTRANSFER_TYPE.EditValue = ds.Tables["MMSMM_TRANSFER"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_TRANSFER"].Rows[0]["TRANSFER_TYPE"].ToString();//单据类型
@@ -144,12 +137,8 @@ namespace ASJMM
                     return null;
                 }
                 #region 控件内容赋值到Dataset
-                if (transfer.TKEY == null)
-                {
-                    ds.Tables["MMSMM_TRANSFER"].NewRow();
-                    ds.Tables["MMSMM_TRANSFER"].Rows.Add();
-                }
-
+                if (ds.Tables["MMSMM_TRANSFER"].Rows.Count == 0) MHelper.InsertNewRowForDatatable(ds, "MMSMM_TRANSFER");
+                ds.Tables["MMSMM_TRANSFER"].Rows[0]["TKEY"] = TransferTKEY;
                 ds.Tables["MMSMM_TRANSFER"].Rows[0]["TRANSFER_NO"] = txtTRANSFER_NO.EditValue ?? txtTRANSFER_NO.EditValue.ToString();
                 ds.Tables["MMSMM_TRANSFER"].Rows[0]["TRANSFER_TYPE"] = txtTRANSFER_TYPE.EditValue ?? txtTRANSFER_TYPE.EditValue.ToString();
                 ds.Tables["MMSMM_TRANSFER"].Rows[0]["TRANS_BUSINESS_TYPE"] = txtTRANS_BUSINESS_TYPE.EditValue ?? txtTRANS_BUSINESS_TYPE.EditValue.ToString();
@@ -224,27 +213,18 @@ namespace ASJMM
         /// </summary>
         public void BindGridViewDataSource(string TKEY)
         {
-            string SqlGridView = string.Format(@"select T1.*,T2.TKEY,T2.MATERIAL_CODE,T2.MATERIAL_NAME,T2.MAPID,T2.BASE_UNIT_TKEY from MMSMM_TRANSFER_D T1 
-                                   left join BCMA_MATERIAL T2 ON T1.MATERIAL_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                   WHERE T1.FLAG = 1 and T1.TKEY = '{0}' ", TKEY);
-            MHelper.BindDataSourceForGridControl(GridItem, GrvTransfer, MHelper.QueryBindGridView(SqlGridView).Ds.Tables[0]);//绑定GridControl
+            MHelper.BindDataSourceForGridControl(GridItem, GrvTransfer, "MMSMM_TRANSFER_D", TKEY);
         }
 
         #region 绑定下拉框的值 
         public void BindGrdLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE from BCOR_STOCK where  FLAG = 1");//转出库房
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE from BCOR_STOCK where  FLAG = 1");//接收库房
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE from BCOR_EMPLOYEE where  FLAG = 1");//申请人
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE from BCOR_EMPLOYEE where  FLAG = 1");//接收人
-
             Control.Add(txtFROM_STOCK_TKEY);//转出库房
             Control.Add(txtTO_STOCK_TKEY);//接收库房
             Control.Add(txtAPPLY_USERKEY);//申请人
             Control.Add(txtRECEIVE_USERKEY);//接收人
-            MHelper.BindGridLookUpEdit(strsql, Control);
+            MHelper.BindGridLookUpEdit_Transfer(Control);
         }
 
         public void BindLookUpEdit()
@@ -261,27 +241,18 @@ namespace ASJMM
 
         public void BindReLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemLookUpEdit> Control = new List<RepositoryItemLookUpEdit>();
-            strsql.Add("Select TKEY,UNIT_NAME,UNIT_CODE from BCDF_UNIT WHERE FLAG = 1");
-
             Control.Add(ReLookUpEdit);//计量单位 
-
-            MHelper.BindReLookUpEdit(strsql, Control);
+            MHelper.BindReLookUpEdit_Transfer(Control);
 
         }
 
         public void BindReGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemGridLookUpEdit> Control = new List<RepositoryItemGridLookUpEdit>();
-            strsql.Add("Select TKEY,STOCK_NAME,STOCK_CODE FROM BCOR_STOCK WHERE FLAG = 1");
-            strsql.Add("SELECT TKEY , MATERIAL_CODE,MATERIAL_NAME FROM BCMA_MATERIAL WHERE FLAG = 1 ");
-
             Control.Add(ReGridLookUpEdit_Stock);//转出库房 & 接收库房
             Control.Add(ReGridLookUpEdit);//物料编码
-
-            MHelper.BindReGridLookUpEdit(strsql, Control);
+            MHelper.BindReGridLookUpEdit_Transfer(Control);
         }
 
         #endregion

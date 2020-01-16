@@ -21,7 +21,7 @@ namespace ASJ.BCOR
     public partial class UcSupplierGRP : BaseUserControl
     {
 
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         Result rs = new Result();
         /// <summary>
         /// 供应商分组实体
@@ -85,8 +85,7 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindSupplierTKey()
         {
-            string sql = @"SELECT TKEY,SUPPLIERGRP_NAME,SUPPLIERGRP_CODE FROM BCOR_SUPPLIERGRP WHERE FLAG = 1 ";
-            BHelper.BindGridLookUpEdit(sql, txtMGRPTkey);
+            BHelper.BindGridLookUpEdit_SupplierGRP(txtMGRPTkey);
         }
 
         //多列模糊查询

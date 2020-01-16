@@ -15,7 +15,7 @@ namespace ASJ.BCOR
 {
     public partial class UcDept : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         //声明实体
         private BCOR_DEPT dept;
 
@@ -81,16 +81,11 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,WORKORGAN_NAME,WORKORGAN_CODE from BCOR_WORKORGANIZATION where  FLAG = 1 ");//生产组织
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE FROM BCOR_EMPLOYEE WHERE FLAG = 1 ");//负责人
-            strsql.Add("SELECT TKEY,DEPT_NAME,DEPT_CODE FROM BCOR_DEPT WHERE FLAG = 1 ");//上级部门
-
             Control.Add(txtWORKORGAN_TKEY);//生产组织
             Control.Add(txtDEPTADMIN_EMPL_TKEY);//负责人
             Control.Add(txtF_DEPT_TKEY);//上级部门
-            BHelper.BindGridLookUpEdit(strsql, Control);
+            BHelper.BindGridLookUpEdit_Dept(Control);
 
         }
 

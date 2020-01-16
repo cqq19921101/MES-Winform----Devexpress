@@ -18,7 +18,7 @@ namespace ASJ.BCOR
     /// </summary>
     public partial class UcStockStatus : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_Stock BHelper = new ASJBCOR_Stock();
 
         //库存状态实体
         private BCOR_STOCKSTATUS stockstatus;
@@ -92,8 +92,7 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindStockStatusTKEY()
         {
-            string sql = @"SELECT TKEY,STOCKSTATUS_NAME,STOCKSTATUS_CODE FROM BCOR_STOCKSTATUSGRP WHERE FLAG = 1  and STATUSGRP_NODE <> 0 ";
-            BHelper.BindGridLookUpEdit(sql, txtSTOCKSTATUSGRP_TKEY);
+            BHelper.BindGridLookUpEdit_StockStatus(txtSTOCKSTATUSGRP_TKEY);
 
         }
 

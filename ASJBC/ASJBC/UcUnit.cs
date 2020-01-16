@@ -20,7 +20,7 @@ namespace ASJ.BCOR
     public partial class UcUnit : BaseUserControl
     {
         //实例化帮助类
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         Result rs = new Result();
 
 
@@ -184,11 +184,7 @@ namespace ASJ.BCOR
 
         public void BindGridLookUpEdit()
         {
-            string sql = @"SELECT TKEY,UNIT_GRP_NAME,UNIT_GRP_CODE FROM BCDF_UNIT_GRP WHERE FLAG = 1  and UNIT_GRP_NODE <> 0 ";
-
-            BHelper.BindGridLookUpEdit(sql, txtUnitGrpTkey);
-
-
+            BHelper.BindGridLookUpEdit_Unit(txtUnitGrpTkey);
         }
 
         private void txtUnitGrpTkey_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)

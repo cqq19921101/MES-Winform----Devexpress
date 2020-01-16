@@ -29,7 +29,7 @@ namespace ASJMM
     {
 
         //实例化帮助类
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_Inventory MHelper = new ASJMM_Inventory();
         Result rs = new Result();
 
         private DataSet ds;//参数
@@ -89,15 +89,9 @@ namespace ASJMM
         /// </summary>
         public void LoadData(string TKEY)
         {
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-            string SqlMaster = $@" SELECT * FROM MMSMM_INVENTORY WHERE FLAG = 1  AND TKEY = '{TKEY}'";
-            strsql.Add(SqlMaster);//主档
-            TableNames.Add("MMSMM_INVENTORY");
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
+            ds = MHelper.InventoryLoad(TKEY);//FrmDataLoad
 
             //------------------------------------------------
-
 
             txtINVENTORY_NO.EditValue = ds.Tables["MMSMM_INVENTORY"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_INVENTORY"].Rows[0]["INVENTORY_NO"].ToString();//单号
             txtINVENTORY_TYPE.EditValue = ds.Tables["MMSMM_INVENTORY"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_INVENTORY"].Rows[0]["INVENTORY_TYPE"].ToString();//单据类型
@@ -136,11 +130,7 @@ namespace ASJMM
                     XtraMessageBox.Show(ErrMsgText, "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 #region 控件内容赋值到Dataset
-                if (inventory.TKEY == null)
-                {
-                    ds.Tables["MMSMM_INVENTORY"].NewRow();
-                    ds.Tables["MMSMM_INVENTORY"].Rows.Add();
-                }
+                if (ds.Tables["MMSMM_INVENTORY"].Rows.Count == 0) MHelper.InsertNewRowForDatatable(ds, "MMSMM_INVENTORY");
                 ds.Tables["MMSMM_INVENTORY"].Rows[0]["TKEY"] = InventoryTKEY;
                 ds.Tables["MMSMM_INVENTORY"].Rows[0]["INVENTORY_NO"] = txtINVENTORY_NO.EditValue ?? txtINVENTORY_NO.EditValue.ToString();
                 ds.Tables["MMSMM_INVENTORY"].Rows[0]["INVENTORY_TYPE"] = txtINVENTORY_TYPE.EditValue ?? txtINVENTORY_TYPE.EditValue.ToString();
@@ -204,22 +194,15 @@ namespace ASJMM
         /// </summary>
         public void BindGridViewDataSource(string TKEY)
         {
-            string SqlGridView = string.Format(@"select T1.*,T2.TKEY,T2.MATERIAL_CODE,T2.MATERIAL_NAME,T2.MAPID,T2.BASE_UNIT_TKEY from MMSMM_INVENTORY_D T1 
-                                   left join BCMA_MATERIAL T2 ON T1.MATERIAL_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                   WHERE T1.FLAG = 1 and T1.TKEY = '{0}' ", TKEY);
-            MHelper.BindDataSourceForGridControl(GridItem, GrvInventory, MHelper.QueryBindGridView(SqlGridView).Ds.Tables[0]);//绑定GridControl
+            MHelper.BindDataSourceForGridControl(GridItem, GrvInventory, "MMSMM_INVENTORY_D", TKEY);
         }
 
         #region 绑定下拉框的值 
         public void BindGrdLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE from BCOR_STOCK where  FLAG = 1");//库房名
-
-
-            Control.Add(txtSTOCK_TKEY);//库房名
-            MHelper.BindGridLookUpEdit(strsql, Control);
+            Control.Add(txtSTOCK_TKEY);//库房
+            MHelper.BindGridLookUpEdit_Inventory(Control);
         }
 
         public void BindLookUpEdit()
@@ -229,29 +212,18 @@ namespace ASJMM
 
         public void BindReLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemLookUpEdit> Control = new List<RepositoryItemLookUpEdit>();
-            strsql.Add("Select TKEY,UNIT_NAME,UNIT_CODE from BCDF_UNIT WHERE FLAG = 1");
-
-            Control.Add(ReLookUpEdit);//计量单位 
-
-            MHelper.BindReLookUpEdit(strsql, Control);
-
+            Control.Add(ReLookUpEdit);//计量单位 GrvInStock
+            MHelper.BindReLookUpEdit_Inventory(Control);
         }
 
         public void BindReGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemGridLookUpEdit> Control = new List<RepositoryItemGridLookUpEdit>();
-            strsql.Add("Select TKEY,STOCK_NAME,STOCK_CODE FROM BCOR_STOCK WHERE FLAG = 1");
-            strsql.Add("SELECT TKEY, EMPLOYEE_NAME, EMPLOYEE_CODE FROM BCOR_EMPLOYEE WHERE FLAG = 1");
-            strsql.Add("SELECT TKEY , MATERIAL_CODE,MATERIAL_NAME FROM BCMA_MATERIAL WHERE FLAG = 1 ");
-
             Control.Add(ReGridLookUpEdit_Stock);//库房名
             Control.Add(ReGridLookUpEdit_User);//负责人
             Control.Add(ReGridLookUpEdit);//物料编码
-
-            MHelper.BindReGridLookUpEdit(strsql, Control);
+            MHelper.BindReGridLookUpEdit_Inventory(Control);
         }
 
         #endregion

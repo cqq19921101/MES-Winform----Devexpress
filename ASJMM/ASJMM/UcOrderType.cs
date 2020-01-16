@@ -21,7 +21,7 @@ namespace ASJMM
     public partial class UcOrderType : BaseUserControl
     {
         //帮助类
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_CLTROUTE MHelper = new ASJMM_CLTROUTE();
 
         //实体类
         private MMSMM_ORDERTYPE ordertype;

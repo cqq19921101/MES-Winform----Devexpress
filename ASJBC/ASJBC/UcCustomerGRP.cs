@@ -18,7 +18,7 @@ namespace ASJ.BCOR
     /// </summary>
     public partial class UcCustomerGRP : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         Result rs = new Result();
 
         /// <summary>
@@ -85,8 +85,7 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindCustomerNode()
         {
-            string sql = @"SELECT TKEY,CUSTOMERGRP_NAME,CUSTOMERGRP_CODE FROM BCOR_CUSTOMERGRP WHERE FLAG = 1 ";
-            BHelper.BindGridLookUpEdit(sql, txtCGRPTkey);
+            BHelper.BindGridLookUpEdit_CustomerGRP(txtCGRPTkey);
         }
 
         //多列模糊查询

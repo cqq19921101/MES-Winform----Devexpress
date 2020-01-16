@@ -20,6 +20,7 @@ namespace ASJ.BCTE
     /// </summary>
     public partial class UcProModelGRP : BaseUserControl
     {
+        ASJBCTE_ProConfig Helper = new ASJBCTE_ProConfig();
         /// <summary>
         /// 工序模板分组实体
         /// </summary>
@@ -81,12 +82,7 @@ namespace ASJ.BCTE
         /// </summary>
         public void BindDIYPMTGRPTKey()
         {
-            BCTEHelper Helper = new BCTEHelper();
-            Result rs = new Result();
-            rs = Helper.QueryGroupTable("BCTE_PROMODEL_GRP");
-            txtPMGRPTkey.Properties.DataSource = rs.Ds.Tables[0];
-            txtPMGRPTkey.Properties.DisplayMember = "PROMODELGRP_CODE";
-            txtPMGRPTkey.Properties.ValueMember = "TKEY";
+            Helper.BindGridLookUpEdit_ProModelGRP(txtPMGRPTkey);
         }
 
     }

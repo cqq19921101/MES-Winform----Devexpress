@@ -18,7 +18,7 @@ namespace ASJ.BCOR
     /// </summary>
     public partial class UcSupplier : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         Result rs = new Result();
 
         /// <summary>
@@ -94,9 +94,7 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindSupplierTKey()
         {
-            string sql = @"SELECT TKEY,SUPPLIERGRP_NAME,SUPPLIERGRP_CODE FROM BCOR_SUPPLIERGRP WHERE FLAG = 1  and GRP_NODE <> 0 ";
-            BHelper.BindGridLookUpEdit(sql, txtSupplierGroup);
-
+            BHelper.BindGridLookUpEdit_Supplier(txtSupplierGroup);
         }
 
         //多列模糊查询

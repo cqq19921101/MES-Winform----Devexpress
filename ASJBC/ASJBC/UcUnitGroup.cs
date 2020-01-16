@@ -19,7 +19,7 @@ namespace ASJ.BCOR
     /// </summary>
     public partial class UcUnitGroup : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         /// <summary>
         /// 计量单位分组实体
         /// </summary>
@@ -50,7 +50,6 @@ namespace ASJ.BCOR
         /// <param name="e"></param>
         private void UcUnitGroup_Load(object sender, EventArgs e)
         {
-            BCORHelper Helper = new BCORHelper();
             txtUGRPCode.EditValue = unitgroup.UNIT_GRP_CODE?.ToString();//分组编码
             txtUGRPName.EditValue = unitgroup.UNIT_GRP_NAME?.ToString();//分组名称
             txtUGRPTkey.EditValue = unitgroup.F_UNITGRP_TKEY?.ToString();//上级分组KEY
@@ -85,8 +84,7 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindUnitGRPTKey()
         {
-            string sql = @"SELECT TKEY,UNIT_GRP_NAME,UNIT_GRP_CODE FROM BCDF_UNIT_GRP WHERE FLAG = 1 ";
-            BHelper.BindGridLookUpEdit(sql, txtUGRPTkey);
+            BHelper.BindGridLookUpEdit_UnitGRP(txtUGRPTkey);
         }
 
 

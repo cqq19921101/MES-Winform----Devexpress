@@ -24,7 +24,7 @@ namespace ASJMM
     public partial class UcOTCRConfig : BaseUserControl
     {
         //实例化帮助类
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_CLTROUTE MHelper = new ASJMM_CLTROUTE();
         Result rs = new Result();
 
         //声明实体
@@ -83,22 +83,16 @@ namespace ASJMM
         /// <param name="TKEY"></param>
         public void BindGridViewDataSource(string TKEY)
         {
-            string SqlGridView = @"select T1.*,T2.TKEY,T2.CLTNODE_CODE,T2.CLTNODE_NAME from MMSMM_CLTROUTE_SEQ T1 
-                                   left join MMSMM_CLTNODE_BASE T2 ON T1.CLTNODE_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                   WHERE T1.FLAG = 1 and T1.TKEY = " + "'" + TKEY + "'";
-            MHelper.BindDataSourceForGridControl(GridItem, GrvCltRoute, MHelper.QueryBindGridView(SqlGridView).Ds.Tables[0]);//绑定GridControl
+            MHelper.BindDataSourceForGridControl(GridItem, GrvCltRoute, "MMSMM_CLTROUTE_SEQ", TKEY);
         }
 
         #region 下拉框 GridLookUpEdit 数据绑定
         private void BindGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,ORDERTYPE_NAME,ORDERTYPE_code,BUSINESS_TYPE from MMSMM_ORDERTYPE where  FLAG = 1 ");
-            strsql.Add("SELECT TKEY,CLTROUTE_NAME,CLTROUTE_CODE, CASE WHEN CLTROUTE_READ_FLAG = 1 THEN '完成'  END CLTROUTE_READ_FLAG  from MMSMM_CLTROUTE where  FLAG = 1 and  CLTROUTE_READ_FLAG = 1");
             Control.Add(txtORDERTYPE_CODE);
             Control.Add(txtCLTROUTE_CODE);
-            MHelper.BindGridLookUpEdit(strsql, Control);
+            MHelper.BindGridLookUpEdit_OTCRConfig(Control);
         }
         #endregion
 
@@ -121,21 +115,7 @@ namespace ASJMM
         private void txtCLTROUTE_CODE_EditValueChanged(object sender, EventArgs e)
         {
             string CLTROUTE_CODE = txtCLTROUTE_CODE.EditValue?.ToString();
-            rs = MHelper.Query("MMSMM_CLTROUTE", CLTROUTE_CODE);//MMSMM_CLTROUTE数据 物料采集路线主表
-            if (rs.Ds.Tables[0].Rows.Count > 0)
-            {
-                txtCLTROUTE_NAME.EditValue = rs.Ds.Tables[0].Rows[0]["CLTROUTE_NAME"].ToString();
-                string SqlGridView = @"select T1.*,T2.TKEY,T2.CLTNODE_CODE,T2.CLTNODE_NAME from MMSMM_CLTROUTE_SEQ T1 
-                                   left join MMSMM_CLTNODE_BASE T2 ON T1.CLTNODE_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                   WHERE T1.FLAG = 1 and T1.TKEY = " + "'" + CLTROUTE_CODE + "'";
-                MHelper.BindDataSourceForGridControl(GridItem, GrvCltRoute, MHelper.QueryBindGridView(SqlGridView).Ds.Tables[0]);//绑定GridView
-
-            }
-            else
-            {
-                XtraMessageBox.Show("无数据", "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
-            }
-
+            MHelper.BindReGLE_MMSMM_CLTROUTE(GridItem, GrvCltRoute,txtCLTROUTE_NAME, CLTROUTE_CODE);
         }
 
         #region 多列模糊查询

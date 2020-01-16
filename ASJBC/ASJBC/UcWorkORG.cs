@@ -15,7 +15,7 @@ namespace ASJ.BCOR
 {
     public partial class UcWorkORG : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         Result rs = new Result();
 
         //声明实体
@@ -93,8 +93,7 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindGridLookUpEdit()
         {
-            string sql = @"SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE FROM BCOR_EMPLOYEE WHERE FLAG = 1";
-            BHelper.BindGridLookUpEdit(sql,txtORGANADMIN_EMPL_TKEY);
+            BHelper.BindGridLookUpEdit_WorkORG(txtORGANADMIN_EMPL_TKEY);
         }
 
         #region 多列模糊查询

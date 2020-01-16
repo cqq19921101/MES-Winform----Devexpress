@@ -21,10 +21,10 @@ namespace ASJMM
     /// <summary>
     /// 物料单据采集路线维护
     /// </summary>
-    public partial class UcCltRoute :BaseUserControl
+    public partial class UcCltRoute : BaseUserControl
     {
         //实例化帮助类
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_CLTROUTE MHelper = new ASJMM_CLTROUTE();
         
         //实体
         private MMSMM_CLTROUTE cltroute;
@@ -84,20 +84,13 @@ namespace ASJMM
         /// <param name="Tkey"></param>
         public void LoadData(string Tkey)
         {
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-            string SqlMaster = @" SELECT * FROM MMSMM_CLTROUTE WHERE FLAG = 1  AND TKEY = " + "'" + Tkey + "'";
-            strsql.Add(SqlMaster);//主档
-            TableNames.Add("MMSMM_CLTROUTE");
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
+            ds = MHelper.CLTRouteLoad(Tkey);//FrmDataLoad
 
             //-----------------------------------------------------
             txtCLTROUTE_CODE.EditValue = ds.Tables["MMSMM_CLTROUTE"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_CLTROUTE"].Rows[0]["CLTROUTE_CODE"].ToString();//采集路线编码
             txtCLTROUTE_NAME.EditValue = ds.Tables["MMSMM_CLTROUTE"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_CLTROUTE"].Rows[0]["CLTROUTE_NAME"].ToString();//采集路线名称
             txtCMT.EditValue = ds.Tables["MMSMM_CLTROUTE"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_CLTROUTE"].Rows[0]["CMT"].ToString();//备注
-
             chCLTROUTE_READ_FLAG.EditValue = ds.Tables["MMSMM_CLTROUTE"].Rows.Count == 0 ? 0 : int.Parse(ds.Tables["MMSMM_CLTROUTE"].Rows[0]["CLTROUTE_READ_FLAG"].ToString());//配置完成标识
-
             BindGridViewDataSource(cltroutetkey);//绑定GridView的数据源
         }
 
@@ -152,8 +145,9 @@ namespace ASJMM
         #region 绑定下拉框的值
         public void BindReGridLookUpEdit()
         {
-            string sql = "SELECT TKEY,CLTNODE_NAME,CLTNODE_CODE FROM MMSMM_CLTNODE_BASE WHERE FLAG = 1";
-            MHelper.BindReGridLookUpEdit(sql, ReGridLookUpEdit);
+            List<RepositoryItemGridLookUpEdit> Control = new List<RepositoryItemGridLookUpEdit>();
+            Control.Add(ReGridLookUpEdit);
+            MHelper.BindReGridLookUpEdit_CLTRoute(Control);
         }
         #endregion
 
@@ -163,10 +157,7 @@ namespace ASJMM
         /// <param name="TKEY"></param>
         public void BindGridViewDataSource(string TKEY)
         {
-            string SqlGridView = $@"select T1.*,T2.TKEY,T2.CLTNODE_CODE,T2.CLTNODE_NAME from MMSMM_CLTROUTE_SEQ T1 
-                                   left join MMSMM_CLTNODE_BASE T2 ON T1.CLTNODE_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                   WHERE T1.FLAG = 1 and T1.TKEY = '{TKEY}'";
-            MHelper.BindDataSourceForGridControl(GridItem, GrvCltRoute, MHelper.QueryBindGridView(SqlGridView).Ds.Tables[0]);//绑定GridView
+            MHelper.BindDataSourceForGridControl(GridItem, GrvCltRoute, "MMSMM_CLTROUTE_SEQ", TKEY);
         }
 
         #endregion

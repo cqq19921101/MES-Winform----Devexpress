@@ -26,7 +26,7 @@ namespace ASJMM
     {
         //实例化帮助类
         //MMSMMHelper Helper = new MMSMMHelper();
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_Purchase MHelper = new ASJMM_Purchase();
         Result rs = new Result();
 
 
@@ -90,17 +90,10 @@ namespace ASJMM
         /// <param name="TKEY">工序自定义参数表 TKEY</param>
         public void LoadData(string TKEY)
         {
+            ds = MHelper.PurchaseREQLoad(TKEY);//FrmDataLoad
 
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-            string SqlMaster = $@" SELECT * FROM MMSMM_PURCHASE_REQ WHERE FLAG = 1  AND TKEY = '{TKEY}'";
-            strsql.Add(SqlMaster);//主档
-            TableNames.Add("MMSMM_PURCHASE_REQ");
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
+            //-----------------------------------------------------//
 
-            //-----------------------------------------------------
-
-            //PurChaseTKEY = ds.Tables["MMSMM_PURCHASE_REQ"].Rows.Count == 0 ? Guid.NewGuid().ToString() : ds.Tables["MMSMM_PURCHASE_REQ"].Rows[0]["TKEY"].ToString();//主键
             txtREQUEST_NO.EditValue = ds.Tables["MMSMM_PURCHASE_REQ"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_PURCHASE_REQ"].Rows[0]["REQUEST_NO"].ToString();//请购单号
             txtREQUEST_TYPE.EditValue = ds.Tables["MMSMM_PURCHASE_REQ"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_PURCHASE_REQ"].Rows[0]["REQUEST_TYPE"].ToString();//请购单类型
             txtPQSOURCE_SYSTEM_TYPE.EditValue = ds.Tables["MMSMM_PURCHASE_REQ"].Rows.Count == 0 ? string.Empty : ds.Tables["MMSMM_PURCHASE_REQ"].Rows[0]["PQSOURCE_SYSTEM_TYPE"].ToString();//转换来源系统类型:
@@ -129,12 +122,7 @@ namespace ASJMM
                 return;
             }
             #region 控件内容赋值到Dataset
-            if (PurchaseREQ.TKEY == null)
-            {
-                ds.Tables["MMSMM_PURCHASE_REQ"].NewRow();
-                ds.Tables["MMSMM_PURCHASE_REQ"].Rows.Add();
-            }
-
+            if (ds.Tables["MMSMM_PURCHASE_REQ"].Rows.Count == 0) MHelper.InsertNewRowForDatatable(ds, "MMSMM_PURCHASE_REQ");
             ds.Tables["MMSMM_PURCHASE_REQ"].Rows[0]["TKEY"] = PurChaseREQTKEY;
             ds.Tables["MMSMM_PURCHASE_REQ"].Rows[0]["REQUEST_NO"] = txtREQUEST_NO.EditValue ?? txtREQUEST_NO.EditValue.ToString();
             ds.Tables["MMSMM_PURCHASE_REQ"].Rows[0]["REQUEST_TYPE"] = txtREQUEST_TYPE.EditValue ?? txtREQUEST_TYPE.EditValue.ToString();
@@ -251,10 +239,7 @@ namespace ASJMM
         /// </summary>
         public void BindGridViewDataSource(string TKEY)
         {
-            string SqlGridView = $@"select T1.*,T2.TKEY,T2.MATERIAL_CODE,T2.MATERIAL_NAME,T2.MAPID,T2.BASE_UNIT_TKEY from MMSMM_PURCHASE_REQ_D T1 
-                                   left join BCMA_MATERIAL T2 ON T1.MATERIAL_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                   WHERE T1.FLAG = 1 and T1.TKEY = '{TKEY}'";
-            MHelper.BindDataSourceForGridControl(GridItem, GrvPurDetail, MHelper.QueryBindGridView(SqlGridView).Ds.Tables[0]);//绑定GridControl
+            MHelper.BindDataSourceForGridControl(GridItem, GrvPurDetail, "MMSMM_PURCHASE_REQ_D", TKEY);
         }
 
         #endregion

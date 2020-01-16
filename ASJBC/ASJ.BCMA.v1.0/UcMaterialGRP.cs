@@ -18,7 +18,7 @@ namespace ASJ.BCMA
     /// </summary>
     public partial class UcMaterialGRP : BaseUserControl
     {
-        BCMAHelper BHelper = new BCMAHelper();
+        ASJBCMA_Material BHelper = new ASJBCMA_Material();
         /// <summary>
         ///计量单位分组实体
         /// </summary>
@@ -75,8 +75,7 @@ namespace ASJ.BCMA
         /// </summary>
         public void BindMaterGRPTKey()
         {
-            string sql = @"SELECT TKEY,MATERIALGRP_NAME,MATERIALGRP_CODE FROM BCMA_MATERIALGRP WHERE FLAG = 1 ";
-            BHelper.BindGridLookUpEdit(sql, txtMGRPTkey);
+            BHelper.BindGridLookUpEdit_MaterialGRP(txtMGRPTkey);
         }
 
         //多列模糊查询

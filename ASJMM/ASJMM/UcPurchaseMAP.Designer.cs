@@ -39,6 +39,9 @@
             this.ReTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumn11 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -57,6 +60,7 @@
             this.gridColumn13 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn17 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ReGridLookUpEdit = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
             this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -127,10 +131,6 @@
             this.emptySpaceItem9 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn18 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -297,7 +297,7 @@
             this.gridColumn1.FieldName = "TKEY";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
+            this.gridColumn1.VisibleIndex = 18;
             this.gridColumn1.Width = 93;
             // 
             // ReTextEdit
@@ -313,7 +313,7 @@
             this.gridColumn11.FieldName = "CKEY";
             this.gridColumn11.Name = "gridColumn11";
             this.gridColumn11.Visible = true;
-            this.gridColumn11.VisibleIndex = 2;
+            this.gridColumn11.VisibleIndex = 19;
             this.gridColumn11.Width = 79;
             // 
             // gridColumn2
@@ -323,8 +323,32 @@
             this.gridColumn2.FieldName = "MATERIAL_TKEY";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 6;
+            this.gridColumn2.VisibleIndex = 20;
             this.gridColumn2.Width = 100;
+            // 
+            // gridColumn18
+            // 
+            this.gridColumn18.Caption = "请购单TKEY";
+            this.gridColumn18.FieldName = "TKEY_REQ";
+            this.gridColumn18.Name = "gridColumn18";
+            this.gridColumn18.Visible = true;
+            this.gridColumn18.VisibleIndex = 1;
+            // 
+            // gridColumn7
+            // 
+            this.gridColumn7.Caption = "请购单单号";
+            this.gridColumn7.FieldName = "REQUEST_NO";
+            this.gridColumn7.Name = "gridColumn7";
+            this.gridColumn7.Visible = true;
+            this.gridColumn7.VisibleIndex = 2;
+            // 
+            // gridColumn29
+            // 
+            this.gridColumn29.Caption = "请购单明细TKEY";
+            this.gridColumn29.FieldName = "TKEY_REQ_D";
+            this.gridColumn29.Name = "gridColumn29";
+            this.gridColumn29.Visible = true;
+            this.gridColumn29.VisibleIndex = 3;
             // 
             // gridColumn12
             // 
@@ -333,7 +357,7 @@
             this.gridColumn12.FieldName = "MATERIAL_CODE";
             this.gridColumn12.Name = "gridColumn12";
             this.gridColumn12.Visible = true;
-            this.gridColumn12.VisibleIndex = 7;
+            this.gridColumn12.VisibleIndex = 4;
             this.gridColumn12.Width = 89;
             // 
             // gridColumn3
@@ -343,7 +367,7 @@
             this.gridColumn3.FieldName = "MAPID";
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 8;
+            this.gridColumn3.VisibleIndex = 5;
             this.gridColumn3.Width = 82;
             // 
             // gridColumn4
@@ -353,7 +377,7 @@
             this.gridColumn4.FieldName = "MATERIAL_NAME";
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 9;
+            this.gridColumn4.VisibleIndex = 6;
             this.gridColumn4.Width = 91;
             // 
             // gridColumn5
@@ -363,7 +387,7 @@
             this.gridColumn5.FieldName = "BASE_UNIT_TKEY";
             this.gridColumn5.Name = "gridColumn5";
             this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 10;
+            this.gridColumn5.VisibleIndex = 7;
             this.gridColumn5.Width = 131;
             // 
             // ReLookUpEdit
@@ -381,7 +405,7 @@
             this.gridColumn19.FieldName = "REQUEST_QTY_REQ";
             this.gridColumn19.Name = "gridColumn19";
             this.gridColumn19.Visible = true;
-            this.gridColumn19.VisibleIndex = 11;
+            this.gridColumn19.VisibleIndex = 8;
             this.gridColumn19.Width = 82;
             // 
             // ReNumberEdit
@@ -401,7 +425,7 @@
             this.gridColumn6.FieldName = "REQUEST_QTY";
             this.gridColumn6.Name = "gridColumn6";
             this.gridColumn6.Visible = true;
-            this.gridColumn6.VisibleIndex = 12;
+            this.gridColumn6.VisibleIndex = 9;
             this.gridColumn6.Width = 63;
             // 
             // gridColumn8
@@ -411,7 +435,7 @@
             this.gridColumn8.FieldName = "REQUEST_DATE";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 13;
+            this.gridColumn8.VisibleIndex = 10;
             this.gridColumn8.Width = 74;
             // 
             // ReDateEdit
@@ -431,7 +455,7 @@
             this.gridColumn9.FieldName = "PLAN_DELIVERY_DATE";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 14;
+            this.gridColumn9.VisibleIndex = 11;
             this.gridColumn9.Width = 67;
             // 
             // gridColumn16
@@ -441,7 +465,7 @@
             this.gridColumn16.FieldName = "CONCESSION_RECEIVE_FLAG";
             this.gridColumn16.Name = "gridColumn16";
             this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 15;
+            this.gridColumn16.VisibleIndex = 12;
             this.gridColumn16.Width = 32;
             // 
             // ReCheckEdit
@@ -466,7 +490,7 @@
             this.gridColumn15.FieldName = "PURCHASE_RETURN_FLAG";
             this.gridColumn15.Name = "gridColumn15";
             this.gridColumn15.Visible = true;
-            this.gridColumn15.VisibleIndex = 16;
+            this.gridColumn15.VisibleIndex = 13;
             this.gridColumn15.Width = 32;
             // 
             // gridColumn14
@@ -476,7 +500,7 @@
             this.gridColumn14.FieldName = "DELIVERY_ACTIVE_FLAG";
             this.gridColumn14.Name = "gridColumn14";
             this.gridColumn14.Visible = true;
-            this.gridColumn14.VisibleIndex = 17;
+            this.gridColumn14.VisibleIndex = 14;
             this.gridColumn14.Width = 32;
             // 
             // gridColumn13
@@ -486,7 +510,7 @@
             this.gridColumn13.FieldName = "IQC_FLAG";
             this.gridColumn13.Name = "gridColumn13";
             this.gridColumn13.Visible = true;
-            this.gridColumn13.VisibleIndex = 18;
+            this.gridColumn13.VisibleIndex = 15;
             this.gridColumn13.Width = 32;
             // 
             // gridColumn17
@@ -496,7 +520,7 @@
             this.gridColumn17.FieldName = "SUPPLIER_LOT_FLAG";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 19;
+            this.gridColumn17.VisibleIndex = 16;
             this.gridColumn17.Width = 32;
             // 
             // gridColumn10
@@ -506,8 +530,14 @@
             this.gridColumn10.FieldName = "CMT";
             this.gridColumn10.Name = "gridColumn10";
             this.gridColumn10.Visible = true;
-            this.gridColumn10.VisibleIndex = 20;
+            this.gridColumn10.VisibleIndex = 17;
             this.gridColumn10.Width = 37;
+            // 
+            // gridColumn30
+            // 
+            this.gridColumn30.Caption = "明细状态";
+            this.gridColumn30.FieldName = "PURCHASE_D_STATUS";
+            this.gridColumn30.Name = "gridColumn30";
             // 
             // ReGridLookUpEdit
             // 
@@ -1283,36 +1313,6 @@
             this.layoutControlItem11.Size = new System.Drawing.Size(343, 32);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
-            // 
-            // gridColumn7
-            // 
-            this.gridColumn7.Caption = "请购单单号";
-            this.gridColumn7.FieldName = "REQUEST_NO";
-            this.gridColumn7.Name = "gridColumn7";
-            this.gridColumn7.Visible = true;
-            this.gridColumn7.VisibleIndex = 4;
-            // 
-            // gridColumn18
-            // 
-            this.gridColumn18.Caption = "请购单TKEY";
-            this.gridColumn18.FieldName = "TKEY_REQ";
-            this.gridColumn18.Name = "gridColumn18";
-            this.gridColumn18.Visible = true;
-            this.gridColumn18.VisibleIndex = 3;
-            // 
-            // gridColumn29
-            // 
-            this.gridColumn29.Caption = "请购单明细TKEY";
-            this.gridColumn29.FieldName = "TKEY_REQ_D";
-            this.gridColumn29.Name = "gridColumn29";
-            this.gridColumn29.Visible = true;
-            this.gridColumn29.VisibleIndex = 5;
-            // 
-            // gridColumn30
-            // 
-            this.gridColumn30.Caption = "明细状态";
-            this.gridColumn30.FieldName = "PURCHASE_D_STATUS";
-            this.gridColumn30.Name = "gridColumn30";
             // 
             // UcPurchaseMAP
             // 

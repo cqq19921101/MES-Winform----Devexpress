@@ -14,9 +14,12 @@ using DevExpress.Utils;
 
 namespace ASJ.BCOR
 {
+    /// <summary>
+    /// 工位采集节点
+    /// </summary>
     public partial class UcStationCollectp : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         //声明实体
         private BCOR_STATION_COLLECTP stationcollectp;
 
@@ -73,13 +76,7 @@ namespace ASJ.BCOR
 
         public void BindGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
-            List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,STATION_NAME,STATION_CODE from BCOR_STATION where  FLAG = 1 ");//所属工位
-
-            Control.Add(txtSTATION_TKEY);//所属工位
-            BHelper.BindGridLookUpEdit(strsql, Control);
-
+            BHelper.BindGridLookUpEdit_StationCollectp(txtSTATION_TKEY);
         }
 
         //多列模糊查询

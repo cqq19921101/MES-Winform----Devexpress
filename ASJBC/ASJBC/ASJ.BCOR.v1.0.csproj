@@ -92,8 +92,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BCORHelper.cs" />
-    <Compile Include="BC_Standard.cs" />
+    <Compile Include="ASJBCOR_ORG.cs" />
+    <Compile Include="ASJBCOR_Stock.cs" />
+    <Compile Include="ASJBCOR_Base.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UcCustomer.cs">
       <SubType>UserControl</SubType>

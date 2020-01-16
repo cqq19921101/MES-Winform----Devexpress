@@ -13,9 +13,12 @@ using ASJ.TOOLS.Basic;
 
 namespace ASJ.BCOR
 {
+    /// <summary>
+    /// 工位
+    /// </summary>
     public partial class UcStation : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         //声明实体
         private BCOR_STATION station;
 
@@ -83,13 +86,7 @@ namespace ASJ.BCOR
         /// </summary>
         public void BindGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
-            List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,WORKORGAN_NAME,WORKORGAN_CODE from BCOR_WORKORGANIZATION where  FLAG = 1 ");//生产组织
-
-            Control.Add(txtORGANIZATION_TKEY);//生产组织
-            BHelper.BindGridLookUpEdit(strsql, Control);
-
+            BHelper.BindGridLookUpEdit_Station(txtORGANIZATION_TKEY);
         }
 
         //多列模糊查询

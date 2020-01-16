@@ -18,12 +18,12 @@ using DevExpress.XtraGrid.Columns;
 namespace ASJ.BCTE
 {
     /// <summary>
-    /// 工艺配置 - 工序自定义参数委会
+    /// 工艺配置 - 工序自定义参数管理
     /// </summary>
     public partial class UcDIYParaMeter : BaseUserControl
     {
         //实例化帮助类
-        BCTEHelper Helper = new BCTEHelper();
+        ASJBCTE_ProConfig Helper = new ASJBCTE_ProConfig();
         Result rs = new Result();
 
 
@@ -32,8 +32,10 @@ namespace ASJ.BCTE
         bool IsError = true;
 
 
-        //工序模板主键
+        //工序模板
         private BCTE_DIYPARAMETER DIYParaMeter;
+
+        private string DIYParaMeterTKEY;//主表Tkey变量
 
         /// <summary>
         /// 控件加载
@@ -49,6 +51,7 @@ namespace ASJ.BCTE
         public UcDIYParaMeter(BCTE_DIYPARAMETER _DIYParaMeter) :this()
         {
             DIYParaMeter = _DIYParaMeter;
+            Helper.BindCustomDrawRowIndicator(GrvDIYPMT);//GridView新增序号栏位 自增长 宽度自适应
         }
 
         /// <summary>
@@ -58,8 +61,9 @@ namespace ASJ.BCTE
         /// <param name="e"></param>
         private void UcDIYParaMeter_Load(object sender, EventArgs e)
         {
+            DIYParaMeterTKEY = DIYParaMeter.TKEY == null ? Guid.NewGuid().ToString() : DIYParaMeter.TKEY;
 
-            LoadData(DIYParaMeter);//初始化加载
+            LoadData(DIYParaMeterTKEY);//初始化加载
 
             #region 绑定下拉框的值 (系统数据字典表&&其他表)
             BindLookUpEdit();
@@ -72,22 +76,9 @@ namespace ASJ.BCTE
         /// 初始化加载数据
         /// </summary>
         /// <param name="TKEY">工序自定义参数表 TKEY</param>
-        public void LoadData(BCTE_DIYPARAMETER DIYParaMeter)
+        public void LoadData(string Tkey)
         {
-            string TKEY = DIYParaMeter.TKEY == string.Empty ? Guid.NewGuid().ToString() : DIYParaMeter.TKEY;
-
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-
-            string SqlMaster = @" SELECT * FROM BCTE_DIYPARAMETER WHERE FLAG = 1  AND TKEY = " + "'" + TKEY + "'";
-            //string Sql = @" SELECT * FROM BCTE_DIYPMT_ITEM WHERE FLAG = 1  AND DIYPMT_TKEY = " + "'" + TKEY + "'";
-
-
-            strsql.Add(SqlMaster);//主档
-            TableNames.Add("BCTE_DIYPARAMETER");
-            //TableNames.Add("BCTE_DIYPMT_ITEM");
-
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
+            ds = Helper.DIYParaMeterLoad(Tkey);//FrmDataLoad
 
             #region 控件内容赋值到Dataset
             txtDMCODE.EditValue = ds.Tables["BCTE_DIYPARAMETER"].Rows.Count == 0 ? string.Empty : ds.Tables["BCTE_DIYPARAMETER"].Rows[0]["DIYPMT_CODE"].ToString();//自定义参数编码
@@ -108,7 +99,7 @@ namespace ASJ.BCTE
 
             #endregion
 
-            rs = Helper.Query("BCTE_DIYPMT_ITEM", TKEY, "DIYPMT_TKEY");//根据关联的TKEY带出子表的数据 并绑定到GridControl
+            rs = Helper.Query("BCTE_DIYPMT_ITEM", DIYParaMeterTKEY, "DIYPMT_TKEY");//根据关联的TKEY带出子表的数据 并绑定到GridControl
             Helper.BindDataSourceForGridControl(GridItem, GrvDIYPMT, rs.Ds.Tables[0]);//绑定View
         }
 
@@ -127,6 +118,9 @@ namespace ASJ.BCTE
             }
 
             #region 保存工序自定义参数主表资料
+            if (ds.Tables["BCTE_DIYPARAMETER"].Rows.Count == 0) Helper.InsertNewRowForDatatable(ds, "BCTE_DIYPARAMETER");
+            ds.Tables["BCTE_DIYPARAMETER"].Rows[0]["TKEY"] = DIYParaMeterTKEY;
+            ds.Tables["BCTE_DIYPARAMETER"].Rows[0]["DIYPMT_CODE"] = txtDMCODE.EditValue ?? txtDMCODE.EditValue.ToString();
             ds.Tables["BCTE_DIYPARAMETER"].Rows[0]["DIYPMT_CODE"] = txtDMCODE.EditValue ?? txtDMCODE.EditValue.ToString();
             ds.Tables["BCTE_DIYPARAMETER"].Rows[0]["DIYPMT_NAME"] = txtDMNAME.EditValue ?? txtDMNAME.EditValue.ToString();
             ds.Tables["BCTE_DIYPARAMETER"].Rows[0]["STANDARD_VALUES"] = txtSTANDARD_VALUES.EditValue ?? txtSTANDARD_VALUES.EditValue.ToString();

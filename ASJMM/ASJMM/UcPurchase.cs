@@ -26,7 +26,7 @@ namespace ASJMM
     {
 
         //实例化帮助类
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_Purchase MHelper = new ASJMM_Purchase();
         Result rs = new Result();
 
         private DataSet ds;//请购单参数
@@ -95,12 +95,7 @@ namespace ASJMM
         /// </summary>
         public void LoadData(string TKEY)
         {
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-            string SqlMaster = $@" SELECT * FROM MMSMM_PURCHASE WHERE FLAG = 1  AND TKEY = '{TKEY}'";
-            strsql.Add(SqlMaster);//主档
-            TableNames.Add("MMSMM_PURCHASE");
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
+            ds = MHelper.PurchaseLoad(TKEY);//FrmDataLoad
 
             //------------------------------------------------
 
@@ -138,11 +133,7 @@ namespace ASJMM
                     return null;
                 }
                 #region 控件内容赋值到Dataset
-                if (purchase.TKEY == null)
-                {
-                    ds.Tables["MMSMM_PURCHASE"].NewRow();
-                    ds.Tables["MMSMM_PURCHASE"].Rows.Add();
-                }
+                if (ds.Tables["MMSMM_PURCHASE"].Rows.Count == 0) MHelper.InsertNewRowForDatatable(ds, "MMSMM_PURCHASE");
                 ds.Tables["MMSMM_PURCHASE"].Rows[0]["TKEY"] = PurChaseTKEY;
                 ds.Tables["MMSMM_PURCHASE"].Rows[0]["PURCHASE_NO"] = txtPURCHASE_NO.EditValue ?? txtPURCHASE_NO.EditValue.ToString();
                 ds.Tables["MMSMM_PURCHASE"].Rows[0]["PURCHASE_NO"] = txtPURCHASE_NO.EditValue ?? txtPURCHASE_NO.EditValue.ToString();
@@ -209,79 +200,50 @@ namespace ASJMM
 
         }
 
+        #region 绑定下拉框的值
         /// <summary>
         /// 绑定GirdView数据源
         /// </summary>
         public void BindGridViewDataSource(string TKEY)
         {
-            string strsql = $@" SELECT T1.*,
-                                T2.TKEY,T2.MATERIAL_CODE,T2.MATERIAL_NAME,T2.MAPID,T2.BASE_UNIT_TKEY FROM
-                                (SELECT T1.*,
-                                T2.CONCESSION_RECEIVE_FLAG,
-                                T2.PURCHASE_RETURN_FLAG,
-                                T2.DELIVERY_ACTIVE_FLAG,
-                                T2.IQC_FLAG,
-                                T2.SUPPLIER_LOT_FLAG
-                                FROM MMSMM_PURCHASE_D T1
-                                LEFT JOIN MMSMM_PURCHASE_D_RULE T2 ON
-                                T1.TKEY = T2.PURCHASE_D AND T1.FLAG = T2.FLAG
-                                WHERE T1.FLAG = 1) T1
-                                LEFT JOIN BCMA_MATERIAL T2 ON T1.MATERIAL_TKEY = T2.TKEY AND T1.FLAG = T2.FLAG
-                                WHERE T1.FLAG = 1 and T1.TKEY = '{TKEY}'";
-            MHelper.BindDataSourceForGridControl(GridItem, GrvPurDetail, MHelper.QueryBindGridView(strsql).Ds.Tables[0]);//绑定GridControl
+            MHelper.BindDataSourceForGridControl(GridItem, GrvPurDetail, TKEY);//绑定GridControl
         }
 
-        #region 绑定下拉框的值
         /// <summary>
         /// 绑定GridView中 ReGridLookUpEdit下拉框的值
         /// </summary>
         public void BindReGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemGridLookUpEdit> Control = new List<RepositoryItemGridLookUpEdit>();
-            strsql.Add("SELECT TKEY , MATERIAL_CODE,MATERIAL_NAME FROM BCMA_MATERIAL WHERE FLAG = 1 ");
-
             Control.Add(ReGridLookUpEdit);//物料编码
-
-            MHelper.BindReGridLookUpEdit(strsql, Control);
+            MHelper.BindReGridLookUpEdit_Purcahse(Control);
         }
 
         public void BindReLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<RepositoryItemLookUpEdit> Control = new List<RepositoryItemLookUpEdit>();
-            strsql.Add("Select TKEY,UNIT_NAME,UNIT_CODE from BCDF_UNIT WHERE FLAG = 1");
-
             Control.Add(ReLookUpEdit);//计量单位 
-
-            MHelper.BindReLookUpEdit(strsql, Control);
-
+            MHelper.BindReLookUpEdit_Purchase(Control);
         }
 
-        #endregion
         /// <summary>
         /// 绑定请购部门，请购职员 下拉框的值
         /// </summary>
         public void BindGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,DEPT_NAME,DEPT_CODE from bcor_dept WHERE FLAG = 1");//采购部门
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE FROM bcor_employee where FLAG = 1 ");//采购职员
-            strsql.Add("SELECT TKEY,SUPPLIER_NAME,SUPPLIER_CODE from BCOR_SUPPLIER where  FLAG = 1");//供应商
-
             Control.Add(txtPURCHASE_DEPT_TKEY);//采购部门
             Control.Add(txtPURCHASE_EMPLOYEE_TKEY);//采购职员
             Control.Add(txtSUPPLIER_TKEY);//供应商
-            MHelper.BindGridLookUpEdit(strsql, Control);
+            MHelper.BindGridLookUpEdit_Purchase(Control);
         }
 
         public void BindLookUpEdit()
         {
             MHelper.BindSysDict(txtPURCHASE_TYPE, "MMSMM_PURCHASE__PURCHASE_TYPE");//采购订单类型绑定
-
         }
 
+        #endregion
         #endregion
 
         #region 特殊字段非空校验
@@ -596,26 +558,6 @@ namespace ASJMM
             SaveFunction();
         }
 
-
-
-        //        dt.TableName = "MMSMM_PURCHASE_D";
-        //                if (dt.Rows.Count > 0)
-        //                {
-        //                    DataTable dtC = dt.Copy();
-        //                    //删除不属于该实体的Datatable列
-        //                    foreach (DataColumn dc in dt.Columns)
-        //                    {
-        //                        switch (dc.ColumnName)
-        //                        {
-        //                            case "MATERIAL_CODE":
-        //                            case "MATERIAL_NAME":
-        //                            case "MAPID":
-        //                                dtC.Columns.Remove(dc.ColumnName);
-        //                                break;
-        //                        }
-        //}
-        //                    ds.Tables.Add(dtC);
-        //                                    }
 
     }
 }

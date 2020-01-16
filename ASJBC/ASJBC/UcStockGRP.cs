@@ -19,7 +19,7 @@ namespace ASJ.BCOR
     public partial class UcStockGRP : BaseUserControl
     {
         //实例化帮助类
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_Stock BHelper = new ASJBCOR_Stock();
 
         //库存状态实体
         private BCOR_STOCKGRP stockgrp;
@@ -55,8 +55,7 @@ namespace ASJ.BCOR
             txtF_STOCKGRP_TKEY.EditValue = stockgrp.F_STOCKGRP_TKEY?.ToString();//上级库房组名称
             txtCMT.EditValue = stockgrp.CMT?.ToString();//备注
 
-            BindStockGRP();//绑定上级库房组下拉框的值
-            BindStockMaster();//绑定库房负责人
+            BindGridLookUpEdit();//绑定下拉框的值
         }
 
         /// <summary>
@@ -75,23 +74,15 @@ namespace ASJ.BCOR
         }
 
         /// <summary>
-        /// 绑定库房组下拉框
+        /// 绑定下拉框
         /// </summary>
-        public void BindStockGRP()
+        public void BindGridLookUpEdit()
         {
-            string sql = @"SELECT TKEY,STOCKGRP_NAME,STOCKGRP_CODE  FROM BCOR_STOCKGRP WHERE FLAG  = 1";
-            BHelper.BindGridLookUpEdit(sql, txtF_STOCKGRP_TKEY);
+            List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
+            Control.Add(txtF_STOCKGRP_TKEY);//库房组
+            Control.Add(txtGRPADMIN_EMPL_TKEY);//库房负责人
+            BHelper.BindGridLookUpEdit_StockGRP(Control);
         }
-
-        /// <summary>
-        /// 绑定库房负责人下拉框的值
-        /// </summary>
-        public void BindStockMaster()
-        {
-            string sql = @"SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE  FROM BCOR_EMPLOYEE WHERE FLAG  = 1";
-            BHelper.BindGridLookUpEdit(sql, txtGRPADMIN_EMPL_TKEY);
-        }
-
         #region 多列模糊查询
         private void txtGRPADMIN_EMPL_TKEY_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {

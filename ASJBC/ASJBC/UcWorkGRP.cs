@@ -13,9 +13,12 @@ using ASJ.TOOLS.Basic;
 
 namespace ASJ.BCOR
 {
+    /// <summary>
+    /// 工作班组
+    /// </summary>
     public partial class UcWorkGRP : BaseUserControl
     {
-        BCORHelper BHelper = new BCORHelper();
+        ASJBCOR_ORG BHelper = new ASJBCOR_ORG();
         Result rs = new Result();
         //声明实体
         private BCOR_WORKGRP workgrp;
@@ -79,38 +82,17 @@ namespace ASJ.BCOR
             return workgrp;
         }
 
-        ///// <summary>
-        ///// 绑定分组下拉框
-        ///// </summary>
-        //public void BindLookUpEdit()
-        //{
-        //    BCORHelper Helper = new BCORHelper();
-        //    Result rs = new Result();
-        //    rs = Helper.QueryGroupTable("BCOR_WORKGRP");
-        //    txtF_WORKGRP_TKEY.Properties.DataSource = rs.Ds.Tables[0];
-        //    txtF_WORKGRP_TKEY.Properties.DisplayMember = "WORKGRP_CODE";
-        //    txtF_WORKGRP_TKEY.Properties.ValueMember = "TKEY";
-        //}
-
-
         /// <summary>
         /// 绑定下拉框的值
         /// </summary>
         public void BindGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            strsql.Add("SELECT TKEY,WORKORGAN_NAME,WORKORGAN_CODE from BCOR_WORKORGANIZATION where  FLAG = 1 ");//生产组织
-            strsql.Add("SELECT TKEY,DEPT_NAME,DEPT_CODE from BCOR_DEPT where  FLAG = 1 ");//部门
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE FROM BCOR_EMPLOYEE WHERE FLAG = 1 ");//负责人
-            strsql.Add("SELECT TKEY,WORKGRP_NAME,WORKGRP_CODE FROM BCOR_WORKGRP WHERE FLAG = 1 order by CRE_TIME");//上级班组
-
             Control.Add(txtORGANIZATION_TKEY);//生产组织
             Control.Add(txtDEPT_TKEY);//部门
             Control.Add(txtGRPADMIN_EMPL_TKEY);//负责人
             Control.Add(txtF_WORKGRP_TKEY);//上级班组
-            BHelper.BindGridLookUpEdit(strsql, Control);
-
+            BHelper.BindGridLookUpEdit_WorkGRP(Control);
         }
         #region 多列模糊查询
         private void txtF_WORKGRP_TKEY_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)

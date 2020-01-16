@@ -90,6 +90,8 @@ D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\bin\Debug\ja\DevExpress.Office.v16.2.Core.resour
 D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\bin\Debug\ru\DevExpress.Office.v16.2.Core.resources.dll
 D:\桌面\TEST\BCTE\ASJ.BCTE.v1.0.dll
 D:\桌面\TEST\BCTE\ASJ.BCTE.v1.0.pdb
+D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.v1.0.csprojAssemblyReference.cache
+D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.UcProcessModel.resources
 D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.UcDIYParaMeter.resources
 D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.UcProModelGRP.resources
 D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.v1.0.csproj.GenerateResource.cache
@@ -98,5 +100,3 @@ D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.v1.0.csproj.CoreCompileInputs
 D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.v1.0.csproj.CopyComplete
 D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.v1.0.dll
 D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.v1.0.pdb
-D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.UcProcessModel.resources
-D:\WorkShop\ASJBC\ASJ,BCTE.v1.0\obj\Debug\ASJ.BCTE.v1.0.csprojAssemblyReference.cache

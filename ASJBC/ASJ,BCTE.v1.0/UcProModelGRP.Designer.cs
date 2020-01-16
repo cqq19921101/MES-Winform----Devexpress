@@ -31,7 +31,6 @@
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
             this.txtPMGRPCode = new DevExpress.XtraEditors.TextEdit();
             this.txtPMGRPName = new DevExpress.XtraEditors.TextEdit();
-            this.txtPMGRPTkey = new DevExpress.XtraEditors.LookUpEdit();
             this.txtCMT = new DevExpress.XtraEditors.MemoEdit();
             this.layoutControlGroup1 = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -41,11 +40,15 @@
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.txtPMGRPTkey = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPCode.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPTkey.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCMT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
@@ -55,17 +58,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPTkey.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
             this.layoutControl1.Controls.Add(this.txtPMGRPCode);
             this.layoutControl1.Controls.Add(this.txtPMGRPName);
-            this.layoutControl1.Controls.Add(this.txtPMGRPTkey);
             this.layoutControl1.Controls.Add(this.txtCMT);
+            this.layoutControl1.Controls.Add(this.txtPMGRPTkey);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
-            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.layoutControl1.Margin = new System.Windows.Forms.Padding(4);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.layoutControlGroup1;
             this.layoutControl1.Size = new System.Drawing.Size(509, 271);
@@ -91,22 +96,6 @@
             this.txtPMGRPName.Size = new System.Drawing.Size(339, 28);
             this.txtPMGRPName.StyleController = this.layoutControl1;
             this.txtPMGRPName.TabIndex = 5;
-            // 
-            // txtPMGRPTkey
-            // 
-            this.txtPMGRPTkey.Location = new System.Drawing.Point(115, 76);
-            this.txtPMGRPTkey.Name = "txtPMGRPTkey";
-            this.txtPMGRPTkey.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPMGRPTkey.Properties.Appearance.Options.UseFont = true;
-            this.txtPMGRPTkey.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtPMGRPTkey.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PROMODELGRP_CODE", "工序模板分组编码"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TKEY", "主键", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default)});
-            this.txtPMGRPTkey.Properties.NullText = "";
-            this.txtPMGRPTkey.Size = new System.Drawing.Size(339, 28);
-            this.txtPMGRPTkey.StyleController = this.layoutControl1;
-            this.txtPMGRPTkey.TabIndex = 7;
             // 
             // txtCMT
             // 
@@ -218,6 +207,53 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(43, 32);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // txtPMGRPTkey
+            // 
+            this.txtPMGRPTkey.Location = new System.Drawing.Point(115, 76);
+            this.txtPMGRPTkey.Name = "txtPMGRPTkey";
+            this.txtPMGRPTkey.Properties.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPMGRPTkey.Properties.Appearance.Options.UseFont = true;
+            this.txtPMGRPTkey.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtPMGRPTkey.Properties.NullText = "";
+            this.txtPMGRPTkey.Properties.View = this.gridLookUpEdit1View;
+            this.txtPMGRPTkey.Size = new System.Drawing.Size(339, 28);
+            this.txtPMGRPTkey.StyleController = this.layoutControl1;
+            this.txtPMGRPTkey.TabIndex = 7;
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2,
+            this.gridColumn3});
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "TKEY";
+            this.gridColumn1.FieldName = "TKEY";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "分组编码";
+            this.gridColumn2.FieldName = "PROMODELGRP_CODE";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "分组名称";
+            this.gridColumn3.FieldName = "PROMODELGRP_NAME";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            // 
             // UcProModelGRP
             // 
             this.Appearance.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -225,7 +261,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.layoutControl1);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "UcProModelGRP";
             this.Size = new System.Drawing.Size(509, 271);
             this.Load += new System.EventHandler(this.UcProModelGRP_Load);
@@ -233,7 +269,6 @@
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPCode.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPTkey.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCMT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlGroup1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
@@ -243,6 +278,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPMGRPTkey.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -253,7 +290,6 @@
         private DevExpress.XtraLayout.LayoutControlGroup layoutControlGroup1;
         private DevExpress.XtraEditors.TextEdit txtPMGRPCode;
         private DevExpress.XtraEditors.TextEdit txtPMGRPName;
-        private DevExpress.XtraEditors.LookUpEdit txtPMGRPTkey;
         private DevExpress.XtraEditors.MemoEdit txtCMT;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
@@ -262,5 +298,10 @@
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem3;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.GridLookUpEdit txtPMGRPTkey;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

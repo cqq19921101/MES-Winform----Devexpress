@@ -13,9 +13,12 @@ using ASJ.TOOLS.Basic;
 
 namespace ASJ.BCTE
 {
+    /// <summary>
+    /// 工序模板
+    /// </summary>
     public partial class UcProcessModel : BaseUserControl
     {
-        BCTEHelper BHelper = new BCTEHelper();
+        ASJBCTE_ProConfig BHelper = new ASJBCTE_ProConfig();
         //声明实体
         private BCTE_PROCESS_MODEL processmodel;
 

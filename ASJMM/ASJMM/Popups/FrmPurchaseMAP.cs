@@ -24,7 +24,7 @@ namespace ASJMM
     public partial class FrmPurchaseMAP : BaseForm
     {
         //帮助类
-        MMSMMHelper MHelper = new MMSMMHelper();
+        ASJMM_Purchase MHelper = new ASJMM_Purchase();
         Result rs = new Result();
 
         //声明实体

@@ -22,7 +22,7 @@ namespace ASJ.BCMA
         /// <summary>
         /// 实例化帮助类
         /// </summary>
-        BCMAHelper BHelper = new BCMAHelper();
+        ASJBCMA_Material BHelper = new ASJBCMA_Material();
 
         private BCMA_MATERIAL material;
 
@@ -77,7 +77,7 @@ namespace ASJ.BCMA
         /// <returns></returns>
         private void LoadData(string Tkey)
         {
-            QueryDataToDataset(Tkey);
+            ds = BHelper.MaterialLoad(Tkey);//FrmDataLoad
 
             #region 初始化赋值 将Dataset的值赋到控件中
 
@@ -209,24 +209,24 @@ namespace ASJ.BCMA
         public void SaveFunction()
         {
             //非空校验
-            //string ErrMsgText = string.Empty;
-            //string ErrMsgCheckEdit = string.Empty;
-            //ErrMsgText = JudgeEmptyForTextEdit();//Text 非空验证
-            //ErrMsgCheckEdit = JudgeEmptyForCheckEdit();//CheckEdit 非空验证
-            //if (ErrMsgText.Length > 0)
-            //{
-            //    XtraMessageBox.Show(ErrMsgText, "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
-            //    return;
-            //}
+            string ErrMsgText = string.Empty;
+            string ErrMsgCheckEdit = string.Empty;
+            ErrMsgText = JudgeEmptyForTextEdit();//Text 非空验证
+            ErrMsgCheckEdit = JudgeEmptyForCheckEdit();//CheckEdit 非空验证
+            if (ErrMsgText.Length > 0)
+            {
+                XtraMessageBox.Show(ErrMsgText, "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                return;
+            }
 
-            //if (ErrMsgCheckEdit.Length > 0)
-            //{
-            //    XtraMessageBox.Show(ErrMsgCheckEdit, "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
-            //    return;
-            //}
+            if (ErrMsgCheckEdit.Length > 0)
+            {
+                XtraMessageBox.Show(ErrMsgCheckEdit, "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Warning); ;
+                return;
+            }
 
             #region 物料主档 && 物料基础属性
-            if (ds.Tables["BCMA_MATERIAL"].Rows.Count == 0) BHelper.InsertNewRow(ds, "BCMA_MATERIAL");
+            if (ds.Tables["BCMA_MATERIAL"].Rows.Count == 0) BHelper.InsertNewRowForDatatable(ds, "BCMA_MATERIAL");
             ds.Tables["BCMA_MATERIAL"].Rows[0]["TKEY"] = materialTkey;
             ds.Tables["BCMA_MATERIAL"].Rows[0]["MATERIAL_CODE"] =  txtMATERIAL_NAME.EditValue ?? txtMATERIAL_NAME.EditValue.ToString();
             ds.Tables["BCMA_MATERIAL"].Rows[0]["MATERIAL_NAME"] = txtMATERIAL_CODE.EditValue ?? txtMATERIAL_CODE.EditValue.ToString();
@@ -255,7 +255,7 @@ namespace ASJ.BCMA
             #endregion
 
             #region 物料采购属性
-            if (ds.Tables["BCMA_MATERIAL_PURCHASE"].Rows.Count == 0) BHelper.InsertNewRow(ds, "BCMA_MATERIAL_PURCHASE");
+            if (ds.Tables["BCMA_MATERIAL_PURCHASE"].Rows.Count == 0) BHelper.InsertNewRowForDatatable(ds, "BCMA_MATERIAL_PURCHASE");
             ds.Tables["BCMA_MATERIAL_PURCHASE"].Rows[0]["TKEY"] = materialTkey_Pur == null ? Guid.NewGuid().ToString() : materialTkey_Pur;
             ds.Tables["BCMA_MATERIAL_PURCHASE"].Rows[0]["MATERIAL_TKEY"] = materialTkey;
             ds.Tables["BCMA_MATERIAL_PURCHASE"].Rows[0]["PURCHASE_CONTROL_TYPE"] = txtPURCHASE_CONTROL_TYPE.EditValue.ToString() ?? txtPURCHASE_CONTROL_TYPE.EditValue.ToString();
@@ -271,7 +271,7 @@ namespace ASJ.BCMA
             #endregion
 
             #region 物料库存属性   
-            if (ds.Tables["BCMA_MATERIAL_STOCK"].Rows.Count == 0) BHelper.InsertNewRow(ds, "BCMA_MATERIAL_STOCK");
+            if (ds.Tables["BCMA_MATERIAL_STOCK"].Rows.Count == 0) BHelper.InsertNewRowForDatatable(ds, "BCMA_MATERIAL_STOCK");
             ds.Tables["BCMA_MATERIAL_STOCK"].Rows[0]["TKEY"] = materialTkey_Sto == null ? Guid.NewGuid().ToString() : materialTkey_Sto;
             ds.Tables["BCMA_MATERIAL_STOCK"].Rows[0]["MATERIAL_TKEY"] = materialTkey;
             ds.Tables["BCMA_MATERIAL_STOCK"].Rows[0]["DEFAULT_USER_TKEY"] = txtDEFAULT_USER_TKEY.EditValue ?? txtDEFAULT_USER_TKEY.EditValue.ToString();
@@ -301,7 +301,7 @@ namespace ASJ.BCMA
             #endregion
 
             #region 物料质量属性
-            if (ds.Tables["BCMA_MATERIAL_QUALITY"].Rows.Count == 0)  BHelper.InsertNewRow(ds, "BCMA_MATERIAL_QUALITY");
+            if (ds.Tables["BCMA_MATERIAL_QUALITY"].Rows.Count == 0)  BHelper.InsertNewRowForDatatable(ds, "BCMA_MATERIAL_QUALITY");
             ds.Tables["BCMA_MATERIAL_QUALITY"].Rows[0]["TKEY"] = materialTkey_Qua == null ? Guid.NewGuid().ToString() : materialTkey_Qua;
             ds.Tables["BCMA_MATERIAL_QUALITY"].Rows[0]["MATERIAL_TKEY"] = materialTkey;
             ds.Tables["BCMA_MATERIAL_QUALITY"].Rows[0]["IQC_TYPE"] = txtIQC_TYPE.EditValue ?? txtIQC_TYPE.EditValue.ToString();
@@ -328,7 +328,7 @@ namespace ASJ.BCMA
             #endregion
 
             #region 物料业务属性   BCMA_MATERIAL_USECONTROL
-            if (ds.Tables["BCMA_MATERIAL_USECONTROL"].Rows.Count == 0) BHelper.InsertNewRow(ds, "BCMA_MATERIAL_USECONTROL");
+            if (ds.Tables["BCMA_MATERIAL_USECONTROL"].Rows.Count == 0) BHelper.InsertNewRowForDatatable(ds, "BCMA_MATERIAL_USECONTROL");
             ds.Tables["BCMA_MATERIAL_USECONTROL"].Rows[0]["TKEY"] = materialTkey_Use == null ? Guid.NewGuid().ToString() : materialTkey_Use;
             ds.Tables["BCMA_MATERIAL_USECONTROL"].Rows[0]["MATERIAL_TKEY"] = materialTkey;
             ds.Tables["BCMA_MATERIAL_USECONTROL"].Rows[0]["PURCHASE_FLAG"] = chPURCHASE_FLAG.EditValue.ToString() == "" ? 0 : chPURCHASE_FLAG.EditValue;
@@ -342,7 +342,7 @@ namespace ASJ.BCMA
             #endregion
 
             #region 物料生产属性  
-            if (ds.Tables["BCMA_MATERIAL_PRODUCE"].Rows.Count == 0) BHelper.InsertNewRow(ds, "BCMA_MATERIAL_PRODUCE");
+            if (ds.Tables["BCMA_MATERIAL_PRODUCE"].Rows.Count == 0) BHelper.InsertNewRowForDatatable(ds, "BCMA_MATERIAL_PRODUCE");
             ds.Tables["BCMA_MATERIAL_PRODUCE"].Rows[0]["TKEY"] = materialTkey_Pro == null ? Guid.NewGuid().ToString() : materialTkey_Pro;
             ds.Tables["BCMA_MATERIAL_PRODUCE"].Rows[0]["MATERIAL_TKEY"] = materialTkey;
             ds.Tables["BCMA_MATERIAL_PRODUCE"].Rows[0]["PRODUCE_CONTROL_TYPE"] = txtPRODUCE_CONTROL_TYPE.EditValue.ToString() ?? txtPRODUCE_CONTROL_TYPE.EditValue.ToString();
@@ -383,7 +383,6 @@ namespace ASJ.BCMA
             //生产
             Control.Add(txtPRODUCE_CONTROL_TYPE);//加工管控类型
 
-
             ParaMeter.Add("BCMA_MATERIAL_MATERIAL_SOURCE_TYPE");
             ParaMeter.Add("BCMA_MATERIAL_MATERIAL_TYPE");
             ParaMeter.Add("BCMA_MATERIAL_PURCHASE_PURCHASE_CONTROL_TYPE");
@@ -402,21 +401,7 @@ namespace ASJ.BCMA
         /// </summary>
         public void BindGridLookUpEdit()
         {
-            List<string> strsql = new List<string>();
             List<GridLookUpEdit> Control = new List<GridLookUpEdit>();
-            string sqlunit = "SELECT TKEY, UNIT_NAME, UNIT_CODE FROM BCDF_UNIT WHERE FLAG = 1";
-            strsql.Add(sqlunit);//基本计量单位
-            strsql.Add(sqlunit);//辅助计量单位
-            strsql.Add(sqlunit);//重量计量单位
-            strsql.Add(sqlunit);//长度计量单位
-            strsql.Add(sqlunit);//体积计量单位
-            strsql.Add("SELECT TKEY,SUPPLIER_NAME,SUPPLIER_CODE from BCOR_SUPPLIER where  FLAG = 1 ");//所属供应商
-            strsql.Add("SELECT TKEY,EMPLOYEE_NAME,EMPLOYEE_CODE FROM BCOR_EMPLOYEE WHERE FLAG = 1");//默认管理员
-            strsql.Add("SELECT TKEY,STOCK_NAME,STOCK_CODE FROM BCOR_STOCK WHERE FLAG = 1 ");//默认库房
-            strsql.Add("SELECT TKEY,STOCK_SITE_NAME,STOCK_SITE_CODE FROM BCOR_STOCK_SITE WHERE FLAG = 1 ");//默认库位
-            strsql.Add(sqlunit);//最大库存周期单位
-            strsql.Add(sqlunit);//在库周期检验周期单位
-
             Control.Add(txtBASE_UNIT_TKEY);
             Control.Add(txtASSIST_UNIT_TKEY);
             Control.Add(txtWEIGHT_UNIT_TKEY);
@@ -428,39 +413,7 @@ namespace ASJ.BCMA
             Control.Add(txtDEFAULT_SITE_TKEY);
             Control.Add(txtMAX_STOCK_UNIT_TKEY);
             Control.Add(txtINST_CYQC_UNIT_TKEY);
-            BHelper.BindGridLookUpEdit(strsql,Control);
-        }
-        /// <summary>
-        /// 查询的数据赋值到Dataset中
-        /// </summary>
-        /// <param name="Tkey"></param>
-        public void QueryDataToDataset(string Tkey)
-        {
-            List<string> strsql = new List<string>();
-            List<string> TableNames = new List<string>();
-            string SqlMaster = $@" SELECT * FROM BCMA_MATERIAL WHERE FLAG = 1  AND TKEY = '{Tkey}' ";
-            string SqlMPur = $@" SELECT * FROM BCMA_MATERIAL_PURCHASE WHERE FLAG = 1  AND MATERIAL_TKEY = '{Tkey}' ";
-            string SqlMS = $@" SELECT * FROM BCMA_MATERIAL_STOCK WHERE FLAG = 1  AND MATERIAL_TKEY = '{Tkey}' ";
-            string SqlMQ = $@" SELECT * FROM BCMA_MATERIAL_QUALITY WHERE FLAG = 1  AND MATERIAL_TKEY = '{Tkey}' ";
-            string SqlMU = $@" SELECT * FROM BCMA_MATERIAL_USECONTROL WHERE FLAG = 1  AND MATERIAL_TKEY = '{Tkey}' ";
-            string SqlMPro = $@" SELECT * FROM BCMA_MATERIAL_PRODUCE WHERE FLAG = 1  AND MATERIAL_TKEY = '{Tkey}' ";
-
-            strsql.Add(SqlMaster);//主档
-            strsql.Add(SqlMPur);//采购
-            strsql.Add(SqlMS);//库存
-            strsql.Add(SqlMQ);//质量
-            strsql.Add(SqlMU);//业务
-            strsql.Add(SqlMPro);//生产
-
-            TableNames.Add("BCMA_MATERIAL");
-            TableNames.Add("BCMA_MATERIAL_PURCHASE");
-            TableNames.Add("BCMA_MATERIAL_STOCK");
-            TableNames.Add("BCMA_MATERIAL_QUALITY");
-            TableNames.Add("BCMA_MATERIAL_USECONTROL");
-            TableNames.Add("BCMA_MATERIAL_PRODUCE");
-
-            ds = OracleHelper.Get_DataSet(strsql, TableNames);
-
+            BHelper.BindGridLookUpEdit_Material(Control);
         }
         #endregion
 
